@@ -15,31 +15,31 @@ class player{
 		{
             1 #Lucky_Bastard
             {
-                this.$hp = 80
-                this.$luck = 9
-                this.$strengh = 3
-                this.$agility = 3
+                $this.hp = 80
+                $this.luck = 9
+                $this.strengh = 3
+                $this.agility = 3
             }
             2 #Heavy
             {
-                this.$hp = 150
-                this.$luck = 3
-                this.$strengh = 9
-                this.$agility = 3
+                $this.hp = 150
+                $this.luck = 3
+                $this.strengh = 9
+                $this.agility = 3
             }
             3 #Ninja
             {
-                this.$hp = 50
-                this.$luck = 3
-                this.$strengh = 3
-                this.$agility = 9
+                $this.hp = 50
+                $this.luck = 3
+                $this.strengh = 3
+                $this.agility = 9
             }
             4 #Normal
             {
-                this.$hp = 100
-                this.$luck = 5
-                this.$strengh = 5
-                this.$agility = 5
+                $this.hp = 100
+                $this.luck = 5
+                $this.strengh = 5
+                $this.agility = 5
             }
             5 #Blue_Screen
             {
@@ -91,7 +91,9 @@ class player{
         while($GoodChoice)
 		
 		Clear-Host
-		Write-Host "Alright ($this.name), your adventure is about to begin !"
+		Write-Host "Alright $($this.name), your adventure is about to begin !"
 		Write-Host "Press Enter to finally start the game..."
+		Read-Host
+		Clear-Host
     }
 }

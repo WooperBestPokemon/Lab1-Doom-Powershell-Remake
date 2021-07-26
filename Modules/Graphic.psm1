@@ -1,4 +1,4 @@
-class graphic{
+﻿class graphic{
     [void]TitleScreen($host){
         $this.ChangeColor("red","black",$host)
         Clear-Host
@@ -39,6 +39,70 @@ class graphic{
         Write-Host ""
         Write-Host "*** STOP: 0X000000F4 (0X0000003,0X83776D40,0X84776EAC,0XB29FB000"
         [console]::beep(3000,4000)
+    }
+    [void]GameOver($host, $audio){
+        $this.ChangeColor("Red","Black",$host)
+        
+        Write-Host ""
+        Write-Host "█░░█ █▀▀█ █░░█   █▀▀█ █▀▀█ █▀▀   █▀▀▄ █▀▀ █▀▀█ █▀▀▄"
+        Write-Host "█▄▄█ █░░█ █░░█   █▄▄█ █▄▄▀ █▀▀   █░░█ █▀▀ █▄▄█ █░░█"
+        Write-Host "▄▄▄█ ▀▀▀▀ ░▀▀▀   ▀░░▀ ▀░▀▀ ▀▀▀   ▀▀▀░ ▀▀▀ ▀░░▀ ▀▀▀░"
+        Write-Host ""
+        Write-Host "Tips : Git Gud"
+
+        $audio.play("Game_Over")
+        exit
+    }
+    [void]DodgeVictory($host, $audio){
+        $this.ChangeColor("Green","Black",$host)
+
+        Write-Host ""
+        Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
+        Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
+        Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
+        Write-Host "╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      ╚═╝"
+        Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
+        Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
+        Write-Host ""
+        Write-Host "You got the dodge ending ! (THERE IS 3 ENDINGs)"
+
+        $audio.play("Good")
+        $audio.play("Megalovania")
+        exit
+    }
+    [void]NormalVictory($host, $audio){
+        $this.ChangeColor("Green","Black",$host)
+
+        Write-Host ""
+        Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
+        Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
+        Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
+        Write-Host "╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      ╚═╝"
+        Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
+        Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
+        Write-Host ""
+        Write-Host "You got the normal ending ! (THERE IS 3 ENDINGs)"
+
+        $audio.play("Good")
+        $audio.play("Take_On_Me")
+        exit
+    }
+    [void]LuckyVictory($host, $audio){
+        $this.ChangeColor("Green","Black",$host)
+
+        Write-Host ""
+        Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
+        Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
+        Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
+        Write-Host "╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      ╚═╝"
+        Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
+        Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
+        Write-Host ""
+        Write-Host "You got the lucky ending ! (THERE IS 3 ENDINGs)"
+
+        $audio.play("Good")
+        $audio.play("Baby_Shark")
+        exit
     }
     [void]ChangeColor($foreground, $background, $host){
         $console = $host.ui.rawui
