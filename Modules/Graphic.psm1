@@ -54,16 +54,9 @@
         exit
     }
     [void]DodgeVictory($host, $audio){
-        $this.ChangeColor("Green","Black",$host)
-
-        Write-Host ""
-        Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
-        Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
-        Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
-        Write-Host "╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      ╚═╝"
-        Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
-        Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
-        Write-Host ""
+        $this.ChangeColor("Cyan","Black",$host)
+		$this.PrintVictory()
+		
         Write-Host "You got the dodge ending ! (THERE IS 3 ENDINGs)"
 
         $audio.play("Good")
@@ -72,15 +65,8 @@
     }
     [void]NormalVictory($host, $audio){
         $this.ChangeColor("Green","Black",$host)
-
-        Write-Host ""
-        Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
-        Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
-        Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
-        Write-Host "╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      ╚═╝"
-        Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
-        Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
-        Write-Host ""
+		$this.PrintVictory()
+		
         Write-Host "You got the normal ending ! (THERE IS 3 ENDINGs)"
 
         $audio.play("Good")
@@ -88,9 +74,18 @@
         exit
     }
     [void]LuckyVictory($host, $audio){
-        $this.ChangeColor("Green","Black",$host)
+        $this.ChangeColor("Yellow","Black",$host)
+		$this.PrintVictory()
+		
+        Write-Host "You got the lucky ending ! (THERE IS 3 ENDINGs)"
 
-        Write-Host ""
+        $audio.play("Good")
+        $audio.play("Baby_Shark")
+        exit
+    }
+	[void]PrintVictory()
+	{
+		Write-Host ""
         Write-Host "██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗"
         Write-Host "██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    ██║"
         Write-Host "██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     ██║"
@@ -98,12 +93,7 @@
         Write-Host " ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       ██╗"
         Write-Host "  ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝"
         Write-Host ""
-        Write-Host "You got the lucky ending ! (THERE IS 3 ENDINGs)"
-
-        $audio.play("Good")
-        $audio.play("Baby_Shark")
-        exit
-    }
+	}
     [void]ChangeColor($foreground, $background, $host){
         $console = $host.ui.rawui
         $console.backgroundcolor = $background

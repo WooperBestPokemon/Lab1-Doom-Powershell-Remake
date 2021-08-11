@@ -62,4 +62,22 @@ class inventory{
             }
 		}
 	}
+    [array]GetWeapons(){
+        $weapons = @("Pistol")
+
+        if($this.SMG){
+            $weapons.Add("SMG")
+        }
+        if($this.Shotgun){
+            $weapons.Add("Shotgun")
+        }
+        if($this.Bazooka){
+            $weapons.Add("Bazooka")
+        }
+        if($this.BFG){
+            $weapons.Add("BFG")
+        }
+
+        return $weapons
+    }
 }
