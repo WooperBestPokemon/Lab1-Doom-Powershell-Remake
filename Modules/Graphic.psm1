@@ -74,12 +74,28 @@
         exit
     }
     [void]LuckyVictory($host, $audio){
+        Write-Host "You decide to throw the master ball at the monster..."
+        Write-Host ""
+        Start-Sleep -s 3
+        [console]::beep(400,300)
+        Write-Host "1."
+        Start-Sleep -s 0.7
+        [console]::beep(400,300)
+        Write-Host "2.."
+        Start-Sleep -s 0.7
+        [console]::beep(400,300)
+        Write-Host "3..."
+        Start-Sleep -s 0.7
+        Write-Host "CLACK ! " -ForegroundColor Yellow
+        Start-Sleep -s 0.7
+        Write-Host "PINKY was caught!"
+        $audio.play("Good")
+
         $this.ChangeColor("Yellow","Black",$host)
 		$this.PrintVictory()
 		
         Write-Host "You got the lucky ending ! (THERE IS 3 ENDINGs)"
 
-        $audio.play("Good")
         $audio.play("Baby_Shark")
         exit
     }
@@ -99,5 +115,40 @@
         $console.backgroundcolor = $background
         $console.foregroundcolor = $foreground
         Clear-Host
+    }
+    [void]PokemonAppears($host, $audio)
+    {
+        $this.ChangeColor("White","White",$host)
+        Start-Sleep -Milliseconds 100
+        $this.ChangeColor("Black","Black",$host)
+        Start-Sleep -Milliseconds 100
+        $this.ChangeColor("White","White",$host)
+        Start-Sleep -Milliseconds 100
+        $this.ChangeColor("Black","Black",$host)
+        Start-Sleep -Milliseconds 100
+        $this.ChangeColor("White","White",$host)
+        Start-Sleep -Milliseconds 100
+        $this.ChangeColor("Black","Black",$host)
+        Start-Sleep -Milliseconds 100
+        $audio.play("Pkm_Intro")
+        $this.ChangeColor("White","Black",$host)
+
+        Write-Host " ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ "
+        Write-Host "|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|"
+        Write-Host ""
+        Write-Host ""
+        Write-Host "                                                                                __  "
+        Write-Host " _____          _ _   _    _____ _     _          _____                        |  | "
+        Write-Host "|  _  |   _ _ _|_| |_| |  |  _  |_|___| |_ _ _   |  _  |___ ___ ___ ___ ___ ___|  | "
+        Write-Host "|     |  | | | | | | . |  |   __| |   | '_| | |  |     | . | . | -_| .'|  _|_ -|__| "
+        Write-Host "|__|__|  |_____|_|_|___|  |__|  |_|_|_|_,_|_  |  |__|__|  _|  _|___|__,|_| |___|__| "
+        Write-Host "                                          |___|        |_| |_|                     "
+        Write-Host ""
+        Write-Host ""
+        Write-Host " ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ "
+        Write-Host "|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|"
+
+        $audio.play("Pkm_Intro_Part2")
+        $audio.play("Pkm_Intro_Part3")
     }
 }

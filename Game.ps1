@@ -1,4 +1,4 @@
-############################################################
+﻿############################################################
 #Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass#
 ############################################################
 Using Module ".\modules\Audio.psm1"
@@ -17,10 +17,8 @@ $inventory = New-Object inventory
 $fight = New-Object fight
 
 #THIS IS WHERE THE GAME BEGIN
-
-
 $graphic.TitleScreen($host)
-#$audio.play("intro")
+$audio.play("intro")
 Write-Host "The game has been loaded ! (not really, I just wasted your time into hearing the beeps)"
 Write-Host "Please press enter to continue.."
 Read-Host
@@ -44,7 +42,7 @@ if($utility.ChanceCheck(1, 11, $player.luck, 9)){
     $inventory.AddWeapon("SMG")
     $audio.play("item")
 
-    Write-Host "The SMG fires 5 bullets for a total of 50 dmg p/t"
+    Write-Host "The SMG fires 5 bullets for an average of 50 dmg p/t"
 	Write-Host ""
 }
 else
@@ -56,7 +54,7 @@ else
     $audio.play("item")
 }
 
-Write-Host "The energy pistol can only be fire once per turn (it needs to recharge) and deal 30 dmg."
+Write-Host "The energy pistol can only be fire once per turn (it needs to recharge) and deal a fixed 30 dmg."
 Write-Host ""
 
 Write-Host "You leave the dead body and proceed to the next room..."
@@ -89,16 +87,27 @@ if($utility.PromptChoice("Where do you want to proceed ?", @("Dark Hall", "Illum
     Write-Host ""
 
     if($utility.ChanceCheck(1, 11, $player.agility, 8)){
+        Write-Host "As you walk, you find a shotgun laying on the ground.. You take it and add it to your inventory"
+        $inventory.AddWeapon("Shotgun")
+        $audio.play("item")
+        Write-Host "The shotgun shoots 2 bullets per turn. The damage output varie from 20 to 90 damages."
+        Write-Host ""
         Write-Host "You reach the other end of the hall without a problem."
     }
     else
     {
-        Write-Host "You keep walking until step on a broom and fall on your ass !"
+        Write-Host "You keep walking until step on something and fall on your ass !"
         [console]::beep(400,300)
         Write-Host "Ouch ! you lose 5 HP :c"
         $player.hp -= 5
-
-        Write-Host "You walk towars the end of the hall with a small pain on your butt.."
+        Write-Host ""
+        Write-Host "You look at the thing you stepped on and notice it has the shape of a gun..."
+        Write-Host "You grab it... Shotgun acquired !"
+        $inventory.AddWeapon("Shotgun")
+        $audio.play("item")
+        Write-Host "The shotgun shoots 2 bullets per turn. The damage output varie from 20 to 90 damages."
+        Write-Host ""
+        Write-Host "You walk towars the end of the hall with a small pain on your butt tho.."
     }
     Write-Host ""
     Write-Host "Press Enter to continue..."
@@ -117,8 +126,89 @@ if($utility.PromptChoice("Where do you want to proceed ?", @("Dark Hall", "Illum
     Read-Host
     [monster]$revenant = [monster]::new("Revenant", "rockets", 60, 50, 80)
     $fight.start_fight($inventory, $player, $graphic, $utility, $audio, $host, $revenant)
+    Write-Host ""
+    Write-Host "You proceed to the next room..."
+    Read-Host
+    $graphic.ChangeColor("DarkRed", "Gray")
+    Write-Host "You arrive in a small room. There is two doors."
+    Write-Host ""
+    Write-Host "The first door as a sign saying 'Enter and Die'"
+    Write-Host "The second door looks normal"
+    Write-Host ""
+    if($utility.PromptChoice("Which door do you want to choose ?", @("The door with the deadly sign","The normal door")) -eq 2)
+    {
+        Write-Host "You decide to walk toward the normal door..."
+        Write-Host ""
+        Write-Host "As you enter, you step into a pressure plate. The ground disappears and you fall into a pool lava..."
+        Write-Host ""
+        Write-Host "Press a key to continue..."
+        Read-Host
+        $graphic.GameOver($host, $audio)
+    }
+    Write-Host "You enter inside the menacing room... but nothing happen... probably a troll or something."
+    Write-Host ""
+    Write-Host "Press Enter to continue..."
+    Read-Host
+    Clear-Host
+    Write-Host "You arrive in a small room... and at the middle of the room, there is an IMP that appears from nowhere !"
+    Write-Host ""
+    if($utility.ChanceCheck(1, 11, $player.luck, 15))
+    {
+        Write-Host "As it starts attacking you with its fireballs, an earthquake appears and a piece of rock in falling from the roof, landing on its head"
+        Write-Host ""
+        Write-Host "Still alive but badly damaged, it attacks you !!"
+        Write-Host ""
+        Write-Host "============================="
+        Write-Host " Fight Start !! Imp"
+        Write-Host "============================="
+        Write-Host ""
+        Write-Host "Press Enter to continue..."
+        Read-Host
+        [monster]$imp = [monster]::new("Imp", "fireballs", 20, 50, 50)
+        $fight.start_fight($inventory, $player, $graphic, $utility, $audio, $host, $imp)
+    }
+    else
+    {
+        Write-Host "============================="
+        Write-Host " Fight Start !! Imp"
+        Write-Host "============================="
+        Write-Host ""
+        Write-Host "Press Enter to continue..."
+        Read-Host
+        [monster]$imp = [monster]::new("Imp", "fireballs", 100, 50, 50)
+        $fight.start_fight($inventory, $player, $graphic, $utility, $audio, $host, $imp)
+    }
+    Write-Host ""
+    Write-Host "On the IMP body, you find a medkit ! You heal yourself for 100 HP !"
+    $player.hp += 100
+    Write-Host ""
+    Write-Host "You then proceed to the final room..."
 }
+
 #Path of the Light
 else{
     $graphic.ChangeColor("DarkRed","White",$host)
 }
+
+Write-Host ""
+Write-Host "Press a key to continue..."
+Read-Host
+$graphic.ChangeColor("DarkRed","Black",$host)
+#Final Room
+
+Write-Host "On the door of the final room, there is a bloody sign.."
+Write-Host ""
+Write-Host "█▀▀▄ █▀▀█     █▀▀▄ █▀▀█ ▀▀█▀▀     █▀▀ █▀▀▄ ▀▀█▀▀ █▀▀ █▀▀█"
+Write-Host "█░░█ █░░█     █░░█ █░░█ ░░█░░     █▀▀ █░░█ ░░█░░ █▀▀ █▄▄▀"
+Write-Host "▀▀▀░ ▀▀▀▀     ▀░░▀ ▀▀▀▀ ░░▀░░     ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀ ▀░▀▀"
+Write-Host ""
+Write-Host "You decide to kick the door open, ready for a fight !"
+Write-Host ""
+Write-Host "Press a key to continue..."
+Read-Host
+Clear-Host
+
+#The MasterBall will be added to the player's inventory without its consent.
+if($utility.ChanceCheck(1, 11, $player.luck, 12))
+{ $inventory.AddWeapon("Master_Ball") }
+

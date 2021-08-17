@@ -26,14 +26,17 @@ class inventory{
             "Shotgun"
             {
                 $this.Shotgun = $true
+                $this.Shotgun_Ammo += 4
             }
             "Bazooka"
             {
 				$this.Bazooka = $true
+                $this.Bazooka_Ammo += 2
             }
             "BFG"
             {
                 $this.BFG = $true
+                $this.BFG_Ammo += 1
             }
             "Master_Ball"
             {
@@ -63,7 +66,9 @@ class inventory{
 		}
 	}
     [array]GetWeapons(){
-        $weapons = @("Pistol")
+        [System.Collections.ArrayList]$weapons = @()
+        
+        $weapons.Add("Pistol")
 
         if($this.SMG){
             $weapons.Add("SMG")
@@ -76,6 +81,9 @@ class inventory{
         }
         if($this.BFG){
             $weapons.Add("BFG")
+        }
+        if($this.Master_Ball){
+            $weapons.Add("Master_Ball")
         }
 
         return $weapons
