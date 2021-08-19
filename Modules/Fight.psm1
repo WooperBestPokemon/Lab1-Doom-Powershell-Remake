@@ -35,6 +35,22 @@ class fight{
             $console.foregroundcolor = "Red"
 
             Write-Host ""
+            Write-Host "Ammos"
+            Write-Host "Pistol : inf"
+            if($inventory.SMG)
+            {
+                Write-Host "SMG : $($inventory.SMG_Ammo) / 5"
+            }
+            if($inventory.Shotgun)
+            {
+                Write-Host "Shotgun: $($inventory.Shotgun_Ammo) / 2"
+            }
+            if($inventory.Bazooka)
+            {
+                Write-Host "Bazooka: $($inventory.Bazooka_Ammo) / 1"
+            }
+
+            Write-Host ""
             $weapon_choice = $utility.PromptChoice("What do you want to use ?", $weapons)
             
             #The player always attack first cause I'm lazy
@@ -168,23 +184,6 @@ class fight{
                             Write-Host "Click...Click... Hmhm... No bullet... what a waste of turn !"
                         }
                     }
-                    "BFG"
-                    {
-                        Write-Host "You decide to shoot with the BFG !"
-                        Write-Host ""
-                        if($inventory.BFG_Ammo -gt 0)
-                        {
-                            Write-Host "The weapon starts glowing as it charge before shooting a massive energy ball to the $($monster.name)"
-                            Write-Host ""
-                            Write-Host "The demon explode into a very gory way !"
-                            $inventory.BFG_Ammo -= 1
-                            $kill = $true
-                        }
-                        else
-                        {
-                            Write-Host "Click...Click... Hmhm... No bullet... what a waste of turn !"
-                        }
-                    }
                     "Master_Ball"
                     {
                         #Lucky Ending
@@ -230,7 +229,7 @@ class fight{
                             Write-Host "+15 SMG Ammo" -ForegroundColor Yellow
                             Write-Host "Your HP increase by 20 hp" -ForegroundColor Yellow
                             $inventory.SMG_Ammo += 15
-                            player.hp += 20
+                            $player.hp += 20
                         }
                     }
                 }

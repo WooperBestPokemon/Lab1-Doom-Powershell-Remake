@@ -5,14 +5,12 @@ class inventory{
     [bool]$SMG = $false
     [bool]$Shotgun = $false
     [bool]$Bazooka = $false
-	[bool]$BFG = $false
     [bool]$Master_Ball = $false
 	#Ammo
 	[int]$Pistol_Ammo = 0
 	[int]$SMG_Ammo = 0
 	[int]$Shotgun_Ammo = 0
 	[int]$Bazooka_Ammo = 0
-	[int]$BFG_Ammo = 0
 	
 	
 	[void]AddWeapon($weapon_name){
@@ -31,12 +29,7 @@ class inventory{
             "Bazooka"
             {
 				$this.Bazooka = $true
-                $this.Bazooka_Ammo += 2
-            }
-            "BFG"
-            {
-                $this.BFG = $true
-                $this.BFG_Ammo += 1
+                $this.Bazooka_Ammo += 1
             }
             "Master_Ball"
             {
@@ -59,10 +52,6 @@ class inventory{
             {
 				$this.Bazooka_Ammo += $nbAmmo
             }
-            "BFG"
-            {
-                $this.BFG_Ammo += $nbAmmo
-            }
 		}
 	}
     [array]GetWeapons(){
@@ -78,9 +67,6 @@ class inventory{
         }
         if($this.Bazooka){
             $weapons.Add("Bazooka")
-        }
-        if($this.BFG){
-            $weapons.Add("BFG")
         }
         if($this.Master_Ball){
             $weapons.Add("Master_Ball")
